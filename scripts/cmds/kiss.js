@@ -1,12 +1,12 @@
-,cmd install kiss2.js const fs = require("fs-extra");
+const fs = require("fs-extra");
 const axios = require("axios");
 const Canvas = require("canvas");
 const path = require("path");
 
 module.exports = {
   config: {
-    name: "kiss2",
-    aliases: ["kiss3"],
+    name: "kiss",
+    aliases: ["kiss"],
     version: "2.1",
     author: "Efat",
     countDown: 5,
