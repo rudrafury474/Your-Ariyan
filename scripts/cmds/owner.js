@@ -16,15 +16,11 @@ module.exports = {
 		envConfig: {}
 	},
 	onStart: async function ({ message }) {
-		const authorName = " ⩸_ 𝙽𝙸 𝚂 𝙰𝙽 _⩸ ";
-		const ownAge = "『 ⩸_ 20 _⩸ 』";
-		const messenger = " //m.me/nisan.005";
-		const authorFB = " //www.facebook.com/profile.php?id=61576178781718";
-		const authorNumber = "017××××××98";
-		const Status = "⩸__ 𝚁𝙻𝚂 𝚆𝙷𝙸𝚃 𝙵𝙰𝚁𝙸𝚈𝙰__⩸";
-		const urls = [
-"https://drive.google.com/uc?id=1a72QhBuup4I3IcYhDblJBe1D__fyIh4k",
-"https://drive.google.com/uc?id=1WPeoXpdO7OZ1y9NiyGgYdwsQawV21Oju"
+		const authorName = " ⩸_ ARMAN_⩸ ";
+		const ownAge = "『 ⩸_ 19+ _⩸ 』";
+		const messenger = " Fb te ja halar put ";
+		const authorFB = "https://www.facebook.com/share/1AJxXtvNqL/",
+"https://drive.google.com/uc?export=download&id=1VaaQAvmXk-VPDmvrtjlENTjQCMRRTl-A"
 ];
 		const link = urls[Math.floor(Math.random() * urls.length)];
 		const now = moment().tz('Asia/Jakarta');
@@ -50,8 +46,6 @@ module.exports = {
 \⏰彡𝑁𝑜𝑤 𝑇𝑖𝑚𝑒 : ${time}
 \🔰彡𝐴𝑛𝑦 𝐻𝑒𝑙𝑝 𝐶𝑜𝑛𝑡𝑎𝑐𝑡 : ${messenger}__⩸
 \📛彡𝐵𝑜𝑡 𝐼𝑠 𝑅𝑢𝑛𝑛𝑖𝑛𝑔 𝐹𝑜𝑟 : ${uptimeString}
-    𝑻𝒈:  //t.me/nisan_editz
-    𝑰𝒏𝒔𝒕𝒂:  //www.instagram.com/im_editz_x2.0?
 \===============`,
 			attachment: await global.utils.getStreamFromURL(link)
 		});
