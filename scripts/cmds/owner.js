@@ -16,10 +16,14 @@ module.exports = {
 		envConfig: {}
 	},
 	onStart: async function ({ message }) {
-		const authorName = " ⩸_ ARMAN_⩸ ";
-		const ownAge = "『 ⩸_ 19+ _⩸ 』";
+		const authorName = " ⩸_ARMAN _⩸ ";
+		const ownAge = "『 ⩸_ 19± _⩸ 』";
 		const messenger = " Fb te ja halar put ";
-		const authorFB = "https://www.facebook.com/share/1AJxXtvNqL/",
+		const authorFB = " https://www.facebook.com/itzarman2025k ";
+		const authorNumber = "0160305****";
+		const Status = "⩸_ Amr kew nai re vai _⩸";
+		const urls = [
+"https://drive.google.com/uc?export=download&id=1VaaQAvmXk-VPDmvrtjlENTjQCMRRTl-A",
 "https://drive.google.com/uc?export=download&id=1VaaQAvmXk-VPDmvrtjlENTjQCMRRTl-A"
 ];
 		const link = urls[Math.floor(Math.random() * urls.length)];
