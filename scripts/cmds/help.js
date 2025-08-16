@@ -1,148 +1,118 @@
 const fs = require("fs-extra");
-const axios = require("axios");
-const path = require("path");
-const { getPrefix } = global.utils;
-const { commands, aliases } = global.GoatBot;
-const doNotDelete = "𝗧𝗮𝗿𝗲𝗸";
-/** 
-* @author NTKhang
-* @author: do not delete it
-* @message if you delete or edit it you will get a global ban
-*/
+const { utils } = global;
 
 module.exports = {
- config: {
- name: "help",
- version: "1.18",
- author: "ArYAN",
- countDown: 5,
- role: 0,
- shortDescription: {
- en: "View command usage"
- },
- longDescription: {
- en: "View command usage"
- },
- category: "info",
- guide: {
- en: "{pn} [empty | <page number> | <command name>]"
- + "\n {pn} <command name> [-u | usage | -g | guide]: only show command usage"
- + "\n {pn} <command name> [-i | info]: only show command info"
- + "\n {pn} <command name> [-r | role]: only show command role"
- + "\n {pn} <command name> [-a | alias]: only show command alias"
- },
- priority: 1
- },
+	config: {
+		name: "prefix",
+		version: "1.4",
+		author: "NTKhang",
+		countDown: 5,
+		role: 0,
+		description: "Thay đổi dấu lệnh của bot trong box chat của bạn hoặc cả hệ thống bot (chỉ admin bot)",
+		category: "config",
+		guide: {
+			vi: "   {pn} <new prefix>: thay đổi prefix mới trong box chat của bạn"
+				+ "\n   Ví dụ:"
+				+ "\n    {pn} #"
+				+ "\n\n   {pn} <new prefix> -g: thay đổi prefix mới trong hệ thống bot (chỉ admin bot)"
+				+ "\n   Ví dụ:"
+				+ "\n    {pn} # -g"
+				+ "\n\n   {pn} reset: thay đổi prefix trong box chat của bạn về mặc định",
+			en: "   {pn} <new prefix>: change new prefix in your box chat"
+				+ "\n   Example:"
+				+ "\n    {pn} #"
+				+ "\n\n   {pn} <new prefix> -g: change new prefix in system bot (only admin bot)"
+				+ "\n   Example:"
+				+ "\n    {pn} # -g"
+				+ "\n\n   {pn} reset: change prefix in your box chat to default"
+		}
+	},
 
- langs: {
- en: {
- help: "╭───────────⦿"
- + "\n%1"
- + "\n✪──────⦿"
- + "\n✪ Page [ %2/%3 ]"
- + "\n│ 𝐂𝐮𝐫𝐫𝐞𝐧𝐭𝐥𝐲, 𝐓𝐡𝐞 𝐁𝐨𝐭 𝐇𝐚𝐬 %4 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐓𝐡𝐚𝐭 𝐂𝐚𝐧 𝐁𝐞 𝐔𝐬𝐞𝐝"
- + "\n│ 𝐓𝐲𝐩𝐞 %5𝐡𝐞𝐥𝐩 <𝐩𝐚𝐠𝐞> 𝐓𝐨 𝐕𝐢𝐞𝐰 𝐓𝐡𝐞 𝐂𝐨𝐦𝐦𝐚𝐧𝐝 𝐋𝐢𝐬𝐭"
- + "\n│ 𝐓𝐲𝐩𝐞 %5𝐡𝐞𝐥𝐩 𝐓𝐨 𝐕𝐢𝐞𝐰 𝐓𝐡𝐞 𝐃𝐞𝐭𝐚𝐢𝐥𝐬 𝐎𝐟 𝐇𝐨𝐰 𝐓𝐨 𝐔𝐬𝐞 𝐓𝐡𝐚𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝"
- + "\n✪──────⦿"
- + "\n✪ %6"
- + "\n╰─────────────⦿",
- help2: "%1╭──────────⦿"
- + "\n│ 𝗧𝗼𝘁𝗮𝗹 𝗰𝗺𝗱𝘀:「%2」"
- + "\n╰─────────────⦿\n╭─────────────⦿\n│%4\n╰────────────⦿",
- commandNotFound: "Command \"%1\" does not exist",
- getInfoCommand: "⦿────── NAME ──────⦿"
- + "\n✪ %1"
- + "\n✪▫INFO▫"
- + "\n✪ Description: %2"
- + "\n✪ Other names: %3"
- + "\n✪ Other names in your group: %4"
- + "\n✪ Version: %5"
- + "\n✪ Role: %6"
- + "\n✪ Time per command: %7s"
- + "\n✪ Author: %8"
- + "\n✪▫USAGE▫"
- + "\n» %9"
- + "\n⦿─────────────────⦿",
- onlyInfo: "╭────⦿INFO ──────⦿"
- + "\n✪ Command name: %1"
- + "\n✪ Description: %2"
- + "\n✪ Other names: %3"
- + "\n✪ Other names in your group: %4"
- + "\n✪ Version: %5"
- + "\n✪ Role: %6"
- + "\n ✪Time per command: %7s"
- + "\n✪ Author: %8"
- + "\n╰─────────────⦿",
- onlyUsage: "╭───⦿ USAGE ─────⦿"
- + "\n✪%1"
- + "\n╰─────────────⦿",
- onlyAlias: "╭───⦿ ALIAS ─────⦿"
- + "\n✪ Other names: %1"
- + "\n✪ Other names in your group: %2"
- + "\n╰─────────────⦿",
- onlyRole: "╭────⦿ ROLE ───⦿"
- + "\n✪%1"
- + "\n╰─────────────⦿",
- doNotHave: "Do not have",
- roleText0: "0 (All users)",
- roleText1: "1 (Group administrators)",
- roleText2: "2 (Admin bot)",
- roleText0setRole: "0 (set role, all users)",
- roleText1setRole: "1 (set role, group administrators)",
- pageNotFound: "Page %1 does not exist"
- }
- },
- onStart: async function ({ message, args, event, threadsData, getLang, role }) {
- const langCode = await threadsData.get(event.threadID, "data.lang") || global.GoatBot.config.language;
- let customLang = {};
- const pathCustomLang = path.normalize(`${process.cwd()}/languages/cmds/${langCode}.js`);
- if (fs.existsSync(pathCustomLang))
- customLang = require(pathCustomLang);
+	langs: {
+		vi: {
+			reset: "Đã reset prefix của bạn về mặc định: %1",
+			onlyAdmin: "Chỉ admin mới có thể thay đổi prefix hệ thống bot",
+			confirmGlobal: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix của toàn bộ hệ thống bot",
+			confirmThisThread: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix trong nhóm chat của bạn",
+			successGlobal: "Đã thay đổi prefix hệ thống bot thành: %1",
+			successThisThread: "Đã thay đổi prefix trong nhóm chat của bạn thành: %1",
+			myPrefix: "🌐 Prefix của hệ thống: %1\n🛸 Prefix của nhóm bạn: %2"
+		},
+		en: {
+			reset: "Your prefix has been reset to default: %1",
+			onlyAdmin: "Only admin can change prefix of system bot",
+			confirmGlobal: "Please react to this message to confirm change prefix of system bot",
+			confirmThisThread: "Please react to this message to confirm change prefix in your box chat",
+			successGlobal: "Changed prefix of system bot to: %1",
+			successThisThread: "Changed prefix in your box chat to: %1",
+			myPrefix: "╭━━━━━━ [ 𝚈𝙾𝚄𝚁  𝙰𝚁𝙸𝚈𝙰𝙽] ━━━━━━╮\n┃🔰 𝚂𝚈𝚂𝚃𝙴𝙼 𝙿𝚁𝙴𝙵𝙸𝚇: [ %1 ]\n┃🔰 𝚈𝙾𝚄𝚁 𝙱𝙾𝚇 𝙲𝙷𝙰𝚃 𝙿𝚁𝙴𝙵𝙸𝚇: [ %2 ]\n╰━━━━━━━━━━━━━━━━━━━━━━╯"
+		}
+	},
 
- const { threadID } = event;
- const threadData = await threadsData.get(threadID);
- const prefix = getPrefix(threadID);
- let sortHelp = threadData.settings.sortHelp || "category";
- if (!["category", "name"].includes(sortHelp))
- sortHelp = "name";
- const commandName = (args[0] || "").toLowerCase();
- const command = commands.get(commandName) || commands.get(aliases.get(commandName));
+	onStart: async function ({ message, role, args, commandName, event, threadsData, getLang }) {
+		if (!args[0])
+			return message.SyntaxError();
 
- // ———————————————— LIST ALL COMMAND ——————————————— //
- if (!command && !args[0] || !isNaN(args[0])) {
- const arrayInfo = [];
- let msg = "";
- if (sortHelp == "name") {
- const page = parseInt(args[0]) || 1;
- const numberOfOnePage = 30;
- for (const [name, value] of commands) {
- if (value.config.role > 1 && role < value.config.role)
- continue;
- let describe = name;
- let shortDescription;
- const shortDescriptionCustomLang = customLang[name]?.shortDescription;
- if (shortDescriptionCustomLang != undefined)
- shortDescription = checkLangObject(shortDescriptionCustomLang, langCode);
- else if (value.config.shortDescription)
- shortDescription = checkLangObject(value.config.shortDescription, langCode);
- if (shortDescription)
- describe += `: ${cropContent(shortDescription.charAt(0).toUpperCase() + shortDescription.slice(1))}`;
- arrayInfo.push({
- data: describe,
- priority: value.priority || 0
- });
- }
+		if (args[0] == 'reset') {
+			await threadsData.set(event.threadID, null, "data.prefix");
+			return message.reply(getLang("reset", global.GoatBot.config.prefix));
+		}
 
- arrayInfo.sort((a, b) => a.data - b.data); // sort by name
- arrayInfo.sort((a, b) => a.priority > b.priority ? -1 : 1); // sort by priority
- const { allPage, totalPage } = global.utils.splitPage(arrayInfo, numberOfOnePage);
- if (page < 1 || page > totalPage)
- return message.reply(getLang("pageNotFound", page));
+		const newPrefix = args[0];
+		const formSet = {
+			commandName,
+			author: event.senderID,
+			newPrefix
+		};
 
- const returnArray = allPage[page - 1] || [];
- const startNumber = (page - 1) * numberOfOnePage + 1;
- msg += (returnArray || []).reduce((text, item, index) => text += `✵${index + startNumber}${index + startNumber < 10 ? " " : ""}. 「${item.data}」\n`, '').slice(0, -1);
- await message.reply(getLang("help", msg, page, totalPage, commands.size, prefix, doNotDelete));
- }
- else if (sortHelp == "category") {
- for
+		if (args[1] === "-g")
+			if (role < 2)
+				return message.reply(getLang("onlyAdmin"));
+			else
+				formSet.setGlobal = true;
+		else
+			formSet.setGlobal = false;
+
+		return message.reply(args[1] === "-g" ? getLang("confirmGlobal") : getLang("confirmThisThread"), (err, info) => {
+			formSet.messageID = info.messageID;
+			global.GoatBot.onReaction.set(info.messageID, formSet);
+		});
+	},
+
+	onReaction: async function ({ message, threadsData, event, Reaction, getLang }) {
+		const { author, newPrefix, setGlobal } = Reaction;
+		if (event.userID !== author)
+			return;
+		if (setGlobal) {
+			global.GoatBot.config.prefix = newPrefix;
+			fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
+			return message.reply(getLang("successGlobal", newPrefix));
+		}
+		else {
+			await threadsData.set(event.threadID, newPrefix, "data.prefix");
+			return message.reply(getLang("successThisThread", newPrefix));
+		}
+	},
+
+  onChat: async function ({ event, message, usersData, getLang }) {
+    const data = await usersData.get(event.senderID);
+    const name = data.name;
+    const now = new Date().toLocaleString("en-GB", {
+      timeZone: "Asia/Dhaka",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
+    });
+    const xyrene = {
+      body: getLang("myPrefix", global.GoatBot.config.prefix, utils.getPrefix(event.threadID)),
+      attachment: await global.utils.getStreamFromURL("https://drive.google.com/uc?export=download&id=1MzT7hE-TKmzeyivU56XplkA5Vn1b6PJa")
+        };
+    if (event.body && event.body.toLowerCase() === "prefix")
+      return () => {
+        return message.reply(xyrene);
+      };
+  }
+  };
