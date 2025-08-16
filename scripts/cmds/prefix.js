@@ -11,6 +11,13 @@ module.exports = {
 		description: "Thay đổi dấu lệnh của bot trong box chat của bạn hoặc cả hệ thống bot (chỉ admin bot)",
 		category: "config",
 		guide: {
+			vi: "   {pn} <new prefix>: thay đổi prefix mới trong box chat của bạn"
+				+ "\n   Ví dụ:"
+				+ "\n    {pn} #"
+				+ "\n\n   {pn} <new prefix> -g: thay đổi prefix mới trong hệ thống bot (chỉ admin bot)"
+				+ "\n   Ví dụ:"
+				+ "\n    {pn} # -g"
+				+ "\n\n   {pn} reset: thay đổi prefix trong box chat của bạn về mặc định",
 			en: "   {pn} <new prefix>: change new prefix in your box chat"
 				+ "\n   Example:"
 				+ "\n    {pn} #"
@@ -22,6 +29,15 @@ module.exports = {
 	},
 
 	langs: {
+		vi: {
+			reset: "Đã reset prefix của bạn về mặc định: %1",
+			onlyAdmin: "Chỉ admin mới có thể thay đổi prefix hệ thống bot",
+			confirmGlobal: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix của toàn bộ hệ thống bot",
+			confirmThisThread: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix trong nhóm chat của bạn",
+			successGlobal: "Đã thay đổi prefix hệ thống bot thành: %1",
+			successThisThread: "Đã thay đổi prefix trong nhóm chat của bạn thành: %1",
+			myPrefix: "🌐 Prefix của hệ thống: %1\n🛸 Prefix của nhóm bạn: %2"
+		},
 		en: {
 			reset: "Your prefix has been reset to default: %1",
 			onlyAdmin: "Only admin can change prefix of system bot",
@@ -29,7 +45,7 @@ module.exports = {
 			confirmThisThread: "Please react to this message to confirm change prefix in your box chat",
 			successGlobal: "Changed prefix of system bot to: %1",
 			successThisThread: "Changed prefix in your box chat to: %1",
-			myPrefix: "🌐 System prefix: %1\n🛸 Your box chat prefix: %2"
+			myPrefix: "╭━━━━━━ [ 𝚈𝙾𝚄𝚁  𝙰𝚁𝙸𝚈𝙰𝙽] ━━━━━━╮\n┃🔰 𝚂𝚈𝚂𝚃𝙴𝙼 𝙿𝚁𝙴𝙵𝙸𝚇: [ %1 ]\n┃🔰 𝚈𝙾𝚄𝚁 𝙱𝙾𝚇 𝙲𝙷𝙰𝚃 𝙿𝚁𝙴𝙵𝙸𝚇: [ %2 ]\n╰━━━━━━━━━━━━━━━━━━━━━━╯"
 		}
 	},
 
@@ -78,10 +94,25 @@ module.exports = {
 		}
 	},
 
-	onChat: async function ({ event, message, getLang }) {
-		if (event.body && event.body.toLowerCase() === "prefix")
-			return () => {
-				return message.reply(getLang("myPrefix", global.GoatBot.config.prefix, utils.getPrefix(event.threadID)));
-			};
-	}
-};
+  onChat: async function ({ event, message, usersData, getLang }) {
+    const data = await usersData.get(event.senderID);
+    const name = data.name;
+    const now = new Date().toLocaleString("en-GB", {
+      timeZone: "Asia/Dhaka",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
+    });
+    const xyrene = {
+      body: getLang("myPrefix", global.GoatBot.config.prefix, utils.getPrefix(event.threadID)),
+      attachment: await global.utils.getStreamFromURL("https://drive.google.com/uc?export=download&id=1MzT7hE-TKmzeyivU56XplkA5Vn1b6PJa")
+        };
+    if (event.body && event.body.toLowerCase() === "prefix")
+      return () => {
+        return message.reply(xyrene);
+      };
+  }
+  };
