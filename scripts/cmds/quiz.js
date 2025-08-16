@@ -8,7 +8,7 @@ const baseApiUrl = async () => {
 };
 
 module.exports.config = {
-    name: "quiz",
+    name: "qz",
     version: "1.0",
     author: "Mesbah Bb'e",
     countDown: 5,
