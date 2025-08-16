@@ -12,17 +12,17 @@
 	"antiInbox": true,
 	"language": "en",
 	"notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
-	"nickNameBot": "𝙔𝙤𝙐𝙧 𝙃𝙞 𝙣𝙖 𝙏𝙖 😽🫶",
-	"prefix": "*",
+	"nickNameBot": "YOUR HIMI🫶",
+	"prefix": "_",
 	"adminOnly": {
 		"enable": false,
 		"ignoreCommand": []
 	},
 	"adminBot": [
-		"100093052407139"
+		"61560460841809"
 	],
 	"nisanBot": [
-		"GROUP_ID"
+		"61560460841809"
 	],
 	"notes": "YOUR GROUP ID or Tid ID SET NOW , BECAUSE BOT LOGS MESSAGE SENT YOUR GROUP",
 	"whiteListMode": {
