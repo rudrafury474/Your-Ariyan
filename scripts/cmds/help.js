@@ -61,9 +61,9 @@ module.exports = {
       });
 
       const totalCommands = commands.size;
-      msg += `\n\n╭─────❃[🦆𝙴𝙽𝙹𝙾𝚈🦆] |[𝗔𝗥𝗜𝗬𝗔𝗡]\n | [ 🦆𝙹𝙾𝙸𝙽 𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝚃𝚈𝙿𝙴: ${prefix}𝚂𝚄𝙿𝙿𝙾𝚁𝚃𝙶𝙲 ]\n | [Our group link:- https://m.me/j/AbbsaI-MMs17DDds/  ]\n│>𝚃𝙾𝚃𝙰𝙻 𝙲𝙼𝙳𝚂: [🧠${totalCommands}🦆].\n│𝚃𝚈𝙿𝙴:[ 🦆${prefix}𝙷𝙴𝙻𝙿 𝚃𝙾🦆\n│🦆<𝙲𝙼𝙳> 𝚃𝙾 𝙻𝙴𝙰𝚁𝙽 𝚃𝙷𝙴 𝚄𝚂𝙰𝙶𝙴.]\n╰────────────✦`;
+      msg += `\n\n╭─────❃[🦆𝙴𝙽𝙹𝙾𝚈🦆] |[RUDRAA]\n | [ 🦆𝙹𝙾𝙸𝙽 𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝚃𝚈𝙿𝙴: ${prefix}𝚂𝚄𝙿𝙿𝙾𝚁𝚃𝙶𝙲 ]\n | [Our group link:- https://m.me/j/AbbsaI-MMs17DDds/  ]\n│>𝚃𝙾𝚃𝙰𝙻 𝙲𝙼𝙳𝚂: [🧠${totalCommands}🦆].\n│𝚃𝚈𝙿𝙴:[ 🦆${prefix}𝙷𝙴𝙻𝙿 𝚃𝙾🦆\n│🦆<𝙲𝙼𝙳> 𝚃𝙾 𝙻𝙴𝙰𝚁𝙽 𝚃𝙷𝙴 𝚄𝚂𝙰𝙶𝙴.]\n╰────────────✦`;
       msg += ``;
-      msg += `\n╭─────❃\n│ 🌟 | [📛𝙶𝙾𝙰𝚃𝙱𝙾𝚃📛│𝙾𝚆𝙽𝙴𝚁 𝙵𝙱 𝙸𝙳: Id diya tor kam ki?😴😴😴\n╰────────────✦`; 
+      msg += `\n╭─────❃\n│ 🌟 | [📛𝙶𝙾𝙰𝚃𝙱𝙾𝚃📛│𝙾𝚆𝙽𝙴𝚁 𝙵𝙱 𝙸𝙳: Rudraa Fury😴😴😴\n╰────────────✦`; 
 
       const attachment = await axios.get("https://drive.google.com/uc?export=download&id=16B-IPuC_Zv6ZtVr9rtdEI3fOtkXfiz0d", { responseType: "stream" });
 
@@ -101,7 +101,7 @@ module.exports = {
  ├── 🔰𝐔𝐬𝐚𝐠𝐞🔰
  │ ${usage}
  ├──⚠𝐍𝐨𝐭𝐞𝐬⚠
- │ 🔳𝚃𝚑𝚎 𝚌𝚘𝚗𝚝𝚎𝚗𝚝 inside <ARIYAN> 𝚌𝚊𝚗 𝚋𝚎 𝚌𝚑𝚊𝚗𝚐𝚎𝚍
+ │ 🔳𝚃𝚑𝚎 𝚌𝚘𝚗𝚝𝚎𝚗𝚝 inside <RUDRA> 𝚌𝚊𝚗 𝚋𝚎 𝚌𝚑𝚊𝚗𝚐𝚎𝚍
  │ 🔳𝚃𝚑𝚎 𝚌𝚘𝚗𝚝𝚎𝚗𝚝 inside [𝙰|𝙱|𝙲] 𝚒𝚜 𝚊 𝚘𝚛 𝚋 𝚘𝚛 𝚌
  ╰━━━━━━━❖`;
 
